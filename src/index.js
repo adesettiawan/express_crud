@@ -25,12 +25,12 @@ app.get("/products/:id", async (req, res) => {
 
   const products = await prisma.product.findUnique({
     where: {
-      id: parseInt(productId)
-    }
+      id: parseInt(productId),
+    },
   });
 
-  if(!products){
-    return res.status(400).send({message:"Product not found!"});
+  if (!products) {
+    return res.status(400).send({ message: "Product not found!" });
   }
 
   res.send(products);
@@ -104,7 +104,7 @@ app.put("/products/:id", async (req, res) => {
     const productId = req.params.id;
     const productData = req.body;
 
-    const products = await prisma.product.({
+    const products = await prisma.product.update({
       where: {
         id: parseInt(productId),
       },
