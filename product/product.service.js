@@ -1,3 +1,11 @@
-const express = require("express");
+const prisma = require("../database/index.database");
 
-const router = express.Router();
+const getAllDataProduct = async () => {
+  const products = await prisma.product.findMany();
+
+  return products;
+};
+
+module.exports = {
+  getAllDataProduct,
+};
